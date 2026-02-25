@@ -6,8 +6,11 @@ import { PlusCircleIcon, UserIcon, LogOutIcon, StethoscopeIcon } from './Icons';
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userRole, setUserRole } = useAppContext();
+  const { setUserRole } = useAppContext();
   const currentPath = location.pathname;
+
+  // Derivar el rol desde la URL para que el plugin HTML→Figma muestre el navbar correcto
+  const userRole = currentPath.startsWith('/medico') ? 'doctor' : 'patient';
 
   const isAuthPage = ['/', '/registro', '/medico/login'].includes(currentPath);
 
